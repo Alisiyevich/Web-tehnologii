@@ -5,17 +5,20 @@ http {
 	default_type	application/octet-stream;
 	log_format		simple '$remote_addr $request $status';
 	server {
-		listen 			80;
-		server_name		???;
+		listen 			80 default_server;
+		server_name		*.*;
 		access_log		/var/log/nginx.access_log simple;
+		location / {
+			return 404;
 		location ^~ /uploads/ {
 			root		/home/dmitry/Web-tehnologii/web/
 		}
-		location ~* ^*\.(*)$ {
+		location ~* \.(gif|jpg|jpeg)$ {
 			alias /home/dmitry/Web-tehnologii/web/public/
 		}
-		location ???? {
-			
+
+
 		}
 	}
 }
+
